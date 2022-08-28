@@ -46,6 +46,10 @@ export default defineConfig({
                 },
                 h5: {
                     "font-size": "1.2rem"
+                },
+                img: {
+                    "border-radius": "3px",
+                    "border": "2px solid #B6B6B6",
                 }
             }
         }),

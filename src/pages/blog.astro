@@ -12,14 +12,14 @@ import  "~/components/Card.astro";
         <source media="(prefers-color-scheme: dark)" srcset="/fish-light.png">
         <img src="/fish-dark.png" alt="" width="42" class="mx-auto my--1">
     </picture>
-    <ol x-data="{articles: []}" x-init="articles = await (await fetch('/blog-data.json?category=blog')).json()" class="grid gap--1 md:grid-cols-2">
+    <ol x-data="{articles: []}" x-init="articles = await (await fetch('/blog-data.json')).json()" class="grid gap--1 md:grid-cols-2">
         <template x-for="article in articles">
-            <li>
+            <li x-data="{get datePublished() { return new Intl.DateTimeFormat().format(new Date(article.frontmatter.date))} }">
                 <article class="card">
                     <h1 class="h4 my-0" x-text="article.frontmatter.title"></h1>
                     <p class="font-zen mb--1" x-text="article.frontmatter.abstract" x-if="article.frontmatter.abstract"></p>
                     <footer class="flex items-end">
-                        <span class="block mr-auto text--2" x-text="'Published ' + article.frontmatter.date"></span>
+                        <span class="block mr-auto text--2" x-text="'Published ' + datePublished"></span>
                         <a x-bind:href="article.url" class="button ml-auto">Read <span class="i-feather-arrow-right inline-block align-middle"></span></a>
                     </footer>
                 </article>

@@ -1,5 +1,5 @@
 ---
-layout: Layout
+layout: ../../layouts/ArticleLayouts.astro
 title: Portfolio site
 thumbnail: /media/portfolio-site-preview.png
 author: George Newton
@@ -8,6 +8,8 @@ abstract: The construction of my portfolio is relatively simple, but I want to
 category: portfolio
 date: 2022-08-28T12:19:47.257Z
 ---
+![A screenshot of the site with dark theme applied.](/media/portfolio-site-preview.png)
+
 I first launched my portfolio website in 2022, during my third year of university. I had been meaning to develop one for a while, and had toyed with different designs, but never found a design I was completely happy with. The end result (at the time of writing) was developed rather hurriedly during the summer holidays because I didn't think I would get another chance, and because of this, I made the decision to skip out on features here and there, and not obsess too much over the quality of the site.
 
 The design of the site comes from my love of Japanese culture, and features a copious number of koi fish motifs (Or rather, shadows of koi fish). I also wanted the site to have a minimalistic feel, which I feel I achieved fairly well, there are a minimal number of colours on the page. On the topic of colours, I also wanted the site to support a dark theme so both the background texture and fish motif have a negative version which can be activated by way of the `prefers-color-scheme` media query. 
@@ -16,7 +18,7 @@ The design of the site comes from my love of Japanese culture, and features a co
 
 The architecture of the site is also fairly simple. I decided I would try out [Astro](https://astro.build), a fairly new static site generator that really does a good job of minimizing the amount of Javascript sent to the client. To make things even better, it supports all of the most popular Javascript Frameworks simultaneously. As you may be able to tell I am very pleased with my experience of it so far, it is exactly the type of SSG I had been wanting for some time.
 
-I also gave AlpineJS a go for the first time, my Framework of choice is usually VueJS, since it is the one I am most familiar with, however I find great ennjoyment in exploring new technologies, and I was attracted by the minimalism of Alpine, which as it turns out has a fair amount of similarity to VueJS. The navbar was very easy to construct, in fact, as I was looking over the documentation for Alpine, I fairly quickly came across their [Components](https://alpinejs.dev/components) library. While I still intend to make improvements to the Navbar, for instance by adding more keyboard functionality, the dropdown code which is the only free component of Alpine Components, is perfect for now.
+I also gave AlpineJS a go for the first time, my Framework of choice is usually VueJS, since it is the one I am most familiar with, however I find great ennjoyment in exploring new technologies, and I was attracted by the minimalism of Alpine, which as it turns out has a fair amount of similarity to VueJS. The navbar was very easy to construct, in fact, as I was looking over the documentation for Alpine, I fairly quickly came across their [Components](https://alpinejs.dev/components) library. While I still intend to make improvements to the Navbar, for instance by adding more keyboard functionality, the dropdown code which is the only free component of Alpine Components, is perfect for now. The blog and portfolio pages also use Alpine to dynamically list blog posts, the reason for this is that I wanted to implement pagination for these pages, but haven't gotten round to it yet. 
 
 Another part that I feel is worth mentioning is the CSS. For the CSS, I used a library named [UnoCSS](https://github.com/unocss/unocss) which is very similar to librarys such as WindiCSS and TailwindCSS. To see how it differs from the aforementioned libraries, read [this post by it's creator](https://antfu.me/posts/reimagine-atomic-css).
 
