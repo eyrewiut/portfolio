@@ -1,0 +1,33 @@
+---
+import DefaultLayout from "~/layouts/DefaultLayout.astro";
+import  "~/components/Card.astro";
+---
+
+<DefaultLayout title="Portfolio">
+    <div class="prose">
+        <h1 class="mb-0">Portfolio</h1>
+        <p>Welcome to my portfolio. I use my blog to feature my work here, so for convenience I have collected all the portfolio-related posts here all on one page. Please feel free just to browse, or to read more in-depth about my works.</p>
+    </div>
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="/fish-light.png">
+        <img src="/fish-dark.png" alt="" width="42" class="mx-auto my--1">
+    </picture>
+    <ol x-data="{articles: []}" x-init="articles = await (await fetch('/portfolio-data.json')).json()" class="grid gap--1 md:grid-cols-2 lg:grid-cols-3">
+        <template x-for="article in articles">
+            <li>
+                <article class="card">
+                    <template x-if="article.frontmatter.thumbnail">
+                        <img 
+                            class="aspect-16/9 object-cover mb--1 rounded-3px" 
+                            x-bind:src="article.frontmatter.thumbnail" 
+                            x-bind:alt="article.frontmatter.title" 
+                        >
+                    </template>
+                    <h1 class="h4 my-0" x-text="article.frontmatter.title"></h1>
+                    <p x-text="article.frontmatter.abstract" class="mb--1"></p>
+                    <a x-bind:href="article.url" class="button ml-auto">Read <span class="i-feather-arrow-right inline-block align-middle"></span></a>
+                </article>
+            </li>
+        </template>
+    </ol>
+</DefaultLayout>

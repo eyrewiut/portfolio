@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="CMS">
+    <script>
+        import CMS from "netlify-cms-app";
+    
+        CMS.init({
+            config: {
+                backend: {
+                    name: "test-repo",
+                    repo: "eyrewiut/personal",
+                    branch: "master"
+                },
+                media_folder: "public/media",
+                public_folder: "/media",
+                collections: [
+                    {
+                        name: "article",
+                        label: "Article",
+                        folder: "src/pages/articles",
+                        create: true,
+                        fields: [
+                            { name: "layout", widget: "hidden", default: "Layout", },
+                            {
+                                name: "title",
+                                widget: "string",
+                            },
+                            { 
+                                name: "thumbnail", 
+                                widget: "image", 
+                                required: false, 
+                                allow_multiple: false
+                            },
+                            { name: "author", widget: "string", default: "George Newton" },
+                            { 
+                                name: "abstract",
+                                widget: "text",
+                            },
+                            {
+                                name: "body",
+                                widget: "markdown",
+                            },
+                            {
+                                name: "category",
+                                widget: "select",
+                                options: ["blog", "portfolio"],
+                                default: "blog"
+                            },
+                            {
+                                name: "date",
+                                widget: "datetime",
+                                time_format: false,
+                                date_format: "DD-MM-YYYY"
+                            },
+                        ]
+                    },
+                ]
+            }
+        });
+    </script>
+</BaseLayout>

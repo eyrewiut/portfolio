@@ -1,0 +1,47 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro';
+import LinkCard from "~/components/Card.astro";
+---
+
+<DefaultLayout title="Home">
+	<header class="flex flex-col justify-center sm:flex-row items-center sm:items-start gap-base mb-0">
+		<div class="sm:max-w-3/5 mr-auto prose">
+			<!-- <span class="h1 block my-0">Hello,</span> -->
+			<h1 class="my-0">Hello,</h1>
+			<p class="mt-0">
+				My name is George Newton and I am a Full Stack developer and Interactive Media student at the University of York, England.
+			</p>
+		</div>
+		<picture class="self-stretch m-6 max-w-300px mx-auto sm:(mx-unset m-auto w-1/3)">
+			<source media="(prefers-color-scheme: dark)" srcset="/fish-light.png">
+			<img src="/fish-dark.png" class="w-full">
+		</picture>
+	</header>
+	<section>
+		<h2 class="h2 text-center">Quick Links</h2>
+		<div class="grid sm:grid-cols-2 items-stretch gap--2 md:(mx-auto max-w-screen-md)">
+			<LinkCard title="Portfolio" text="Take a look at a couple of the projects I have worked on." link={{href: "/portfolio",text:"See Portfolio"}}/>
+			<LinkCard title="Blog" text="Browse excerpts and thoughts I have posted here." link={{href: "/blog",text:"Read Blog"}}/>
+		</div>
+	</section>
+	<section class="prose mx-auto">
+		<h2 class="text-center">About Me</h2>
+		<p>
+			My name is George Newton and I am a Full Stack developer and Interactive Media student at the University of York, England.
+		</p>
+		<p>
+			Throughout much of my life, I have had a passion for computers, in particular, programming. While I have (and continue to) pursued relevent qualifications in this area, a source of pride for me is that the majority of my practical experience I have gained through side projects and experimentation during my free time.
+		</p>
+		<p>
+			My learning has been fueled both by my love for problem-solving as well as an urge to be able to produce programs of a high-quality.
+		</p>
+	</section>
+	<div class="max-w-400px mx-auto mt-2"> <!-- todo: Can astro pass attributes to components? would eliminate this wrapper div :/ -->
+		<LinkCard title="External Links">
+			<span class="inline text-center">
+				<a class="inline-block text-white i-logos-github-icon" href="https://github.com/eyrewiut"></a>
+				<a class="inline-block text-white i-logos-linkedin-icon" href="https://www.linkedin.com/in/george-newton-736435158/"></a>
+			</span>
+		</LinkCard>
+	</div>
+</DefaultLayout>

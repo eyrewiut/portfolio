@@ -1,0 +1,31 @@
+---
+const { title, text, leftView = false, link } = Astro.props;
+
+interface CardLinkOptions {
+    isButton?: boolean;
+    href: string;
+    text: string;
+}
+
+export interface Props {
+	title: string;
+    leftView?: boolean;
+    link?: CardLinkOptions;
+    text?: string;
+}
+---
+<article class="card">
+    <h1 class:list={["h4 mt-0 mb--1", !leftView && "text-center"]}>{title}</h1>
+    <slot>
+        <p class="font-zen mb-auto">{text}</p>
+    </slot>
+    <slot name="footer">
+        {link && <a href={link.href} class={link.isButton ? "button" : "link"}>{link.text}</a>}
+    </slot>
+</article>
+
+<style is:global>
+    .card {
+        @apply bg-greyscale-11 dark:bg-greyscale-3 border-greyscale-9 dark:border-greyscale-5 border-1 px-base py-1 rounded-3px flex flex-col;
+    }
+</style>

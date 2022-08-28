@@ -1,0 +1,29 @@
+---
+import DefaultLayout from "~/layouts/DefaultLayout.astro";
+import  "~/components/Card.astro";
+---
+
+<DefaultLayout title="Blog">
+    <div class="prose">
+        <h1 class="mb-0">Writing</h1>
+        <p>Occasionally I feel like writing a paragraph or two, usually relating to something I have learned recently. This page is where I will do that.</p>
+    </div>
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="/fish-light.png">
+        <img src="/fish-dark.png" alt="" width="42" class="mx-auto my--1">
+    </picture>
+    <ol x-data="{articles: []}" x-init="articles = await (await fetch('/blog-data.json?category=blog')).json()" class="grid gap--1 md:grid-cols-2">
+        <template x-for="article in articles">
+            <li>
+                <article class="card">
+                    <h1 class="h4 my-0" x-text="article.frontmatter.title"></h1>
+                    <p class="font-zen mb--1" x-text="article.frontmatter.abstract" x-if="article.frontmatter.abstract"></p>
+                    <footer class="flex items-end">
+                        <span class="block mr-auto text--2" x-text="'Published ' + article.frontmatter.date"></span>
+                        <a x-bind:href="article.url" class="button ml-auto">Read <span class="i-feather-arrow-right inline-block align-middle"></span></a>
+                    </footer>
+                </article>
+            </li>
+        </template>
+    </ol>
+</DefaultLayout>

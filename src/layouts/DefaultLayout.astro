@@ -1,0 +1,25 @@
+---
+import Navbar from "~/components/Navbar.astro";
+import BaseLayout from "./BaseLayout.astro";
+import "@unocss/reset/tailwind.css"
+
+export interface Props {
+    title?: string
+}
+
+const {title} = Astro.props;
+---
+<BaseLayout title={title}>
+    <div class="sm:max-w-screen-sm md:max-w-screen-lg mx-auto">
+        <Navbar/>
+        <main class="px-1">
+            <slot/>
+            <footer class="flex flex-wrap text--1 items-center py--1 mt-4">
+                <p>&copy; George Newton {new Date().getFullYear()}</p>
+                <p class="ml-auto text--3 sm:max-w-prose sm:text-right">
+                    Why the fish motif? I have fascination with Japan, and decided to express this through the design of my portfolio.
+                </p>
+            </footer>
+        </main>
+    </div>
+</BaseLayout>

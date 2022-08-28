@@ -1,0 +1,47 @@
+---
+export interface Props {
+	title?: string;
+}
+
+// Ensure hmr works :|
+import "unocss-hmr-fix";
+
+import "@fontsource/jost/variable.css";
+import "@fontsource/jost/variable-italic.css";
+import "@fontsource/lato";
+import "@fontsource/zen-kaku-gothic-new";
+import "~/icons.css";
+
+const { title = "George Newton" } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="text-18px">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<slot name="head"/>
+	</head>
+	<body class="font-zen dark:bg-#333 dark:text-white">
+		<slot />
+		<slot name="foot"/>
+	</body>
+</html>
+
+<style>
+html {
+	background: url(/background-tile-light.png) #F5F2ED;
+}
+
+@media (prefers-color-scheme: dark) {
+	html {
+		background: url(/background-tile-dark.png) #272B29;
+	}
+}
+</style>
