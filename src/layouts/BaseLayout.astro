@@ -1,6 +1,7 @@
 ---
 export interface Props {
 	title?: string;
+	description?: string;
 }
 
 // Ensure hmr works :|
@@ -12,11 +13,14 @@ import "@fontsource/lato";
 import "@fontsource/zen-kaku-gothic-new";
 import "~/icons.css";
 
-const { title = "George Newton" } = Astro.props as Props;
+const { 
+	title = "George Newton", 
+	description = "I am George Newton, a full-stack developer and University of York student and this is my personal website and portfolio."
+} = Astro.props as Props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="text-18px">
+<html lang="en-GB" class="text-18px">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -24,8 +28,10 @@ const { title = "George Newton" } = Astro.props as Props;
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 		<link rel="manifest" href="/site.webmanifest">
+
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>{title} | George Newton</title>
+		<meta name="description" content={description}>
 		<slot name="head"/>
 	</head>
 	<body class="font-zen dark:text-white">
