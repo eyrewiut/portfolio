@@ -19,7 +19,12 @@
                     backend: {
                         name: "github",
                         repo: "eyrewiut/portfolio",
-                        branch: "master"
+                        branch: "feat/i18n"
+                    },
+                    i18n: {
+                        structure: "multiple_folders",
+                        locales: ["en-GB", "ja"],
+                        default_locale: "en-GB"
                     },
                     media_folder: "public/media",
                     public_folder: "/media",
@@ -29,38 +34,45 @@
                             label: "Article",
                             folder: "src/pages/articles",
                             create: true,
+                            i18n: true,
                             fields: [
                                 { name: "layout", widget: "hidden", default: "../../layouts/ArticleLayouts.astro", },
                                 {
                                     name: "title",
                                     widget: "string",
+                                    i18n: "translate",
                                 },
                                 { 
                                     name: "thumbnail", 
                                     widget: "image", 
                                     required: false, 
-                                    allow_multiple: false
+                                    allow_multiple: false,
+                                    i18n: "duplicate"
                                 },
-                                { name: "author", widget: "string", default: "George Newton" },
+                                { name: "author", widget: "string", default: "George Newton", i18n: "translate" },
                                 { 
                                     name: "abstract",
                                     widget: "text",
+                                    i18n: "translate",
                                 },
                                 {
                                     name: "body",
                                     widget: "markdown",
+                                    i18n: "translate",
                                 },
                                 {
                                     name: "category",
                                     widget: "select",
                                     options: ["blog", "portfolio"],
-                                    default: "blog"
+                                    default: "blog",
+                                    i18n: "duplicate",
                                 },
                                 {
                                     name: "date",
                                     widget: "datetime",
                                     time_format: false,
-                                    date_format: "DD-MM-YYYY"
+                                    date_format: "DD-MM-YYYY",
+                                    i18n: "duplicate"
                                 },
                             ]
                         },
