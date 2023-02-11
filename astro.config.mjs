@@ -1,14 +1,20 @@
 import { defineConfig } from 'astro/config';
-import uno from "astro-uno";
-import alpine from "@astrojs/alpinejs"; // TODO: image
-// https://astro.build/config
-
+import uno from "@unocss/astro";
+import NetlifyCMS from "astro-netlify-cms";
+import cmsConfig from "./netlifycms.config.ts";
+import alpine from "@astrojs/alpinejs";
 import sitemap from "@astrojs/sitemap";
+// TODO: image
 
-// https://astro.build/config
 export default defineConfig({
-  site: process.env.URL,
-  integrations: [uno({
-    presets: []
-  }), alpine(), sitemap()]
+  site: process.env.URL || "http://localhost:3000/",
+  integrations: [
+    uno(),
+    NetlifyCMS({
+      config: cmsConfig,
+      adminPath: "/cms"
+    }),
+    alpine(),
+    sitemap(),
+  ]
 });

@@ -15,7 +15,7 @@ export interface Props {
 }
 ---
 <article class="card">
-    <h1 class:list={["h4 mt-0 mb--1", !leftView && "text-center"]}>{title}</h1>
+    {title && <h1 class:list={["h4 mt-0 mb--1", !leftView && "text-center"]}>{title}</h1>}
     <slot>
         <p class="font-zen mb-auto">{text}</p>
     </slot>

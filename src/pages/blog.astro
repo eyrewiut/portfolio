@@ -1,6 +1,19 @@
 ---
 import DefaultLayout from "~/layouts/DefaultLayout.astro";
-import  "~/components/Card.astro";
+import { getCollection } from "astro:content";
+import Card from "~/components/Card.astro";
+
+const articles = await getCollection("articles");
+const cards = articles
+    .filter(article => article.data.category == "blog")
+    .map(({slug, data}) => ({
+        ...data,
+        formattedDate: new Intl.DateTimeFormat().format(new Date(data.date)),
+        slug,
+        full_slug: "/articles/" + slug
+    }))
+
+console.log(Astro.site)
 ---
 
 <DefaultLayout title="Blog">
@@ -12,18 +25,21 @@ import  "~/components/Card.astro";
         <source media="(prefers-color-scheme: dark)" srcset="/fish-light.png">
         <img src="/fish-dark.png" alt="" width="42" class="mx-auto my--1">
     </picture>
-    <ol x-data="{articles: []}" x-init="articles = await (await fetch('/blog-data.json')).json()" class="grid gap--1 md:grid-cols-2">
-        <template x-for="article in articles">
-            <li x-data="{get datePublished() { return new Intl.DateTimeFormat().format(new Date(article.frontmatter.date))} }">
-                <article class="card">
-                    <h1 class="h4 my-0" x-text="article.frontmatter.title"></h1>
-                    <p class="font-zen mb--1" x-text="article.frontmatter.abstract" x-if="article.frontmatter.abstract"></p>
-                    <footer class="flex items-end">
-                        <span class="block mr-auto text--2" x-text="'Published ' + datePublished"></span>
-                        <a x-bind:href="article.url" class="button ml-auto">Read <span class="i-feather-arrow-right inline-block align-middle"></span></a>
+    {
+        cards.length == 0 ?
+            (<span class="font-jost text-2xl text-center my-5 block">Nothing here yet!</span>)
+        : <ol class="grid gap--1 md:grid-cols-2">
+            {cards.map(({title, full_slug, abstract, formattedDate}) =>
+            <li>
+                <Card title={title} leftView>
+                    {abstract && <p class="font-zen mb--1">{abstract}</p>}
+                    <footer class="flex items-end" slot="footer">
+                        <span class="block mr-auto text--2">Published {formattedDate}</span>
+                        <a href={full_slug} class="button ml-auto">Read <span
+                                class="i-feather-arrow-right inline-block align-middle"></span></a>
                     </footer>
-                </article>
-            </li>
-        </template>
-    </ol>
+                </Card>
+            </li>)}
+        </ol>
+    }
 </DefaultLayout>

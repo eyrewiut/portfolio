@@ -4,17 +4,14 @@ export interface Props {
 	description?: string;
 }
 
-// Ensure hmr works :|
-import "unocss-hmr-fix";
-
 import "@fontsource/jost/variable.css";
 import "@fontsource/jost/variable-italic.css";
 import "@fontsource/lato";
 import "@fontsource/zen-kaku-gothic-new";
 import "~/icons.css";
 
-const { 
-	title = "George Newton", 
+const {
+	title = "George Newton",
 	description = "I am George Newton, a full-stack developer and University of York student and this is my personal website and portfolio."
 } = Astro.props as Props;
 ---

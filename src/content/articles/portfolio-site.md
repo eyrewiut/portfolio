@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/ArticleLayouts.astro
 title: Portfolio site
 thumbnail: /media/portfolio-site-preview.png
 author: George Newton

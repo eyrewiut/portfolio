@@ -1,10 +1,10 @@
 ---
 const isActiveLink = (path) => Astro.url.pathname === path;
-const activeClass = (href) => ["link", isActiveLink(href) ? "font-medium" : "font-normal"]
+const activeClass = (href) => ["link", isActiveLink(href) ? "font-bold no-underline" : "font-normal"]
 ---
 
-<nav class="px-1 py--1 mb-base flex items-center relative"         
-        x-data="navbar" 
+<nav class="px-1 py--1 mb-base flex items-center relative"
+        x-data="navbar"
         x-on:keydown.escape.prevent.stop="close($refs.button)"
         x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
         x-id="['dropdown-button']"
@@ -12,8 +12,8 @@ const activeClass = (href) => ["link", isActiveLink(href) ? "font-medium" : "fon
     <a href="/" class="block">
         <svg width="136" height="21" viewBox="0 0 136 21"><use href="/brand.svg#text"></use></svg>
     </a>
-    <button 
-        class="flex flex-col items-center justify-center font-jost uppercase ml-auto" 
+    <button
+        class="flex flex-col items-center justify-center font-jost uppercase ml-auto"
         x-on:click="toggle()"
         x-ref="button"
         x-bind:aria-expanded="open"
@@ -22,8 +22,8 @@ const activeClass = (href) => ["link", isActiveLink(href) ? "font-medium" : "fon
         <span class="i-feather-menu" x-bind:class="open ? 'i-feather-x' : 'i-feather-menu'"></span>
         <span class="text--2" x-text="open ? 'Close' : 'Menu'">Menu</span>
     </button>
-    <ul class="absolute top-full inset-x-base bg-greyscale-11 dark:bg-greyscale-3 border-greyscale-9 dark:border-greyscale-5 border-1 px--1 py--2 rounded-3px shadow sm:(max-w-400px ml-auto) flex flex-col gap--6 text-base" 
-        x-show="open" 
+    <ul class="absolute top-full inset-x-base bg-greyscale-11 dark:bg-greyscale-3 border-greyscale-9 dark:border-greyscale-5 border-1 px--1 py--2 rounded-3px shadow sm:(max-w-400px ml-auto) flex flex-col gap--6 text-base"
+        x-show="open"
         x-transition.origin.top
         x-ref="panel"
         x-cloak

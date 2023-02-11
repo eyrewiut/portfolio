@@ -1,6 +1,16 @@
 ---
 import DefaultLayout from "~/layouts/DefaultLayout.astro";
-import  "~/components/Card.astro";
+import Card from "~/components/Card.astro"; import {getCollection} from "astro:content";
+
+const articles = await getCollection("articles");
+const cards = articles
+    .filter(article => article.data.category == "portfolio")
+    .map(({slug, data}) => ({
+        ...data,
+        formattedDate: new Intl.DateTimeFormat().format(new Date(data.date)),
+        slug,
+        full_slug: "articles/" + slug,
+    }))
 ---
 
 <DefaultLayout title="Portfolio">
@@ -12,22 +22,25 @@ import  "~/components/Card.astro";
         <source media="(prefers-color-scheme: dark)" srcset="/fish-light.png">
         <img src="/fish-dark.png" alt="" width="42" class="mx-auto my--1">
     </picture>
-    <ol x-data="{articles: []}" x-init="articles = await (await fetch('/portfolio-data.json')).json()" class="grid gap--1 md:grid-cols-2 lg:grid-cols-3">
-        <template x-for="article in articles">
+    {
+        cards.length == 0 ?
+            (<span class="font-jost text-2xl text-center my-5 block">Nothing here yet!</span>)
+        : <ol class="grid gap--1 md:grid-cols-2 lg:grid-cols-3">
+            {cards.map(({title, thumbnail, abstract, slug, full_slug}) =>
             <li>
-                <article class="card">
-                    <template x-if="article.frontmatter.thumbnail">
-                        <img 
-                            class="aspect-16/9 object-cover mb--1 rounded-3px" 
-                            x-bind:src="article.frontmatter.thumbnail" 
-                            x-bind:alt="article.frontmatter.title" 
+                <Card leftView>
+                    {thumbnail &&
+                        <img
+                            class="aspect-16/9 object-cover mb--1 rounded-3px"
+                            src={thumbnail}
+                            alt={title}
                         >
-                    </template>
-                    <h1 class="h4 my-0" x-text="article.frontmatter.title"></h1>
-                    <p x-text="article.frontmatter.abstract" class="mb--1"></p>
-                    <a x-bind:href="article.url" class="button ml-auto">Read <span class="i-feather-arrow-right inline-block align-middle"></span></a>
-                </article>
-            </li>
-        </template>
-    </ol>
+                    }
+                    <h1 class="h4 my-0">{title}</h1>
+                    <p class="mb--1">{abstract}</p>
+                    <a slot="footer" href={full_slug} class="button ml-auto">Read <span class="i-feather-arrow-right inline-block align-middle"></span></a>
+                </Card>
+            </li>)}
+        </ol>
+    }
 </DefaultLayout>
