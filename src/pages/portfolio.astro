@@ -9,7 +9,7 @@ const cards = articles
         ...data,
         formattedDate: new Intl.DateTimeFormat().format(new Date(data.date)),
         slug,
-        full_slug: "articles/" + slug,
+        full_slug: "/articles/" + slug,
     }))
 ---
 
