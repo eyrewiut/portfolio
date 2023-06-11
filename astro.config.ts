@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import uno from "@unocss/astro";
 import NetlifyCMS from "astro-netlify-cms";
-import cmsConfig from "./netlifycms.config.ts";
+import cmsConfig from "./netlifycms.config";
 import alpine from "@astrojs/alpinejs";
 import sitemap from "@astrojs/sitemap";
 // TODO: image

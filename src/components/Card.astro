@@ -15,12 +15,12 @@ export interface Props {
 }
 ---
 <article class="card">
-    {title && <h1 class:list={["h4 mt-0 mb--1", !leftView && "text-center"]}>{title}</h1>}
+    {title && <h3 class:list={["h4 mt-0 mb--1", !leftView && "text-center"]}>{title}</h3>}
     <slot>
         <p class="font-zen mb-auto">{text}</p>
     </slot>
     <slot name="footer">
-        {link && <a href={link.href} class={link.isButton ? "button" : "link"}>{link.text}</a>}
+        {link && <a href={link.href} class:list={["mt-0.75", link.isButton ? "button" : "link"]}>{link.text}</a>}
     </slot>
 </article>
 

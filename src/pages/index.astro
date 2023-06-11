@@ -38,10 +38,10 @@ import LinkCard from "~/components/Card.astro";
 	</section>
 	<div class="max-w-400px mx-auto mt-2"> <!-- todo: Can astro pass attributes to components? would eliminate this wrapper div :/ -->
 		<LinkCard title="External Links">
-			<span class="inline text-center">
-				<a class="inline-block text-white i-logos-github-icon" href="https://github.com/eyrewiut"></a>
-				<a class="inline-block text-white i-logos-linkedin-icon" href="https://www.linkedin.com/in/george-newton-736435158/"></a>
-			</span>
+			<div class="flex gap--2 text-2xl justify-center text-center">
+				<a class="block i-cib-github hover:(transform-scale-120 transition-transform transition-1)" href="https://github.com/eyrewiut"></a>
+				<a class="block i-cib-linkedin hover:(transform-scale-120) transition-transform transition-2" href="https://www.linkedin.com/in/george-newton-736435158/"></a>
+			</div>
 		</LinkCard>
 	</div>
 </DefaultLayout>
