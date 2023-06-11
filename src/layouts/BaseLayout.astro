@@ -8,11 +8,15 @@ import "@fontsource/jost/variable.css";
 import "@fontsource/jost/variable-italic.css";
 import "@fontsource/lato";
 import "@fontsource/zen-kaku-gothic-new";
+// import "~/icons.css";
 
 const {
 	title = "George Newton",
 	description = "I am George Newton, a full-stack developer and University of York student and this is my personal website and portfolio."
 } = Astro.props as Props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialCardURL = new URL("/social-card.png", Astro.url)
 ---
 
 <!DOCTYPE html>
@@ -24,6 +28,21 @@ const {
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 		<link rel="manifest" href="/site.webmanifest">
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://eyrewiut-portfolio.netlify.app/">
+		<meta property="og:title" content="Home | George Newton">
+		<meta property="og:description" content="I am George Newton, a full-stack developer and University of York student and this is my personal website and portfolio.">
+		<meta property="og:image" content={socialCardURL}>
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image">
+		<meta property="twitter:url" content={Astro.site.href}>
+		<meta property="twitter:title" content="Home | George Newton">
+		<meta property="twitter:description" content="I am George Newton, a full-stack developer and University of York student and this is my personal website and portfolio.">
+		<meta property="twitter:image" content={socialCardURL}>
 
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | George Newton</title>
