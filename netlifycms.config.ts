@@ -6,7 +6,7 @@ const config: CmsConfig = {
 		repo: "eyrewiut/portfolio",
 		branch: "master"
 	},
-	media_folder: "public/media",
+	media_folder: "src/assets/media",
 	public_folder: "/media",
 	collections: [
 		{

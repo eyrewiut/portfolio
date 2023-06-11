@@ -1,19 +1,19 @@
 ---
 title: Portfolio site
-thumbnail: /media/portfolio-site-preview.png
+thumbnail: ../../assets/media/portfolio-site-preview.png
 author: George Newton
 abstract: The construction of my portfolio is relatively simple, but I want to
   explain how it works, and my thought process during development.
 category: portfolio
 date: 2022-08-28T12:19:47.257Z
 ---
-![A screenshot of the site with dark theme applied.](/media/portfolio-site-preview.png)
+![A screenshot of the site with dark theme applied.](../../assets/media/portfolio-site-preview.png)
 
 I first launched my portfolio website in 2022, during my third year of university. I had been meaning to develop one for a while, and had toyed with different designs, but never found a design I was completely happy with. The end result (at the time of writing) was developed rather hurriedly during the summer holidays because I didn't think I would get another chance, and because of this, I made the decision to skip out on features here and there, and not obsess too much over the quality of the site.
 
 The design of the site comes from my love of Japanese culture, and features a copious number of koi fish motifs (Or rather, shadows of koi fish). I also wanted the site to have a minimalistic feel, which I feel I achieved fairly well, there are a minimal number of colours on the page. On the topic of colours, I also wanted the site to support a dark theme so both the background texture and fish motif have a negative version which can be activated by way of the `prefers-color-scheme` media query. 
 
-![A screenshot of the site with dark theme applied.](/media/portfolio-site-preview-dark.png)
+![A screenshot of the site with dark theme applied.](../../assets/media/portfolio-site-preview-dark.png)
 
 The architecture of the site is also fairly simple. I decided I would try out [Astro](https://astro.build), a fairly new static site generator that really does a good job of minimizing the amount of Javascript sent to the client. To make things even better, it supports all of the most popular Javascript Frameworks simultaneously. As you may be able to tell I am very pleased with my experience of it so far, it is exactly the type of SSG I had been wanting for some time.
 

@@ -8,6 +8,9 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: process.env.URL || "http://localhost:3000/",
+  experimental: {
+    assets: true
+  },
   integrations: [
     uno(),
     NetlifyCMS({
