@@ -1,7 +1,13 @@
 import {config, fields, collection} from "@keystatic/core";
 
 export default config ({
-    storage: { kind: "local" },
+    storage: {
+        kind: "github",
+        repo: {
+            owner: "eyrewiut",
+            name: "portfolio"
+        },
+    },
     collections: {
         articles: collection({
             label: "Articles",
