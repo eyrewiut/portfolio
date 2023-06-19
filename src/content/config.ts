@@ -7,7 +7,7 @@ const articlesCollection = defineCollection({
         author: z.string(),
         abstract: z.string(),
         category: z.string(),
-        date: z.date()
+        date: z.coerce.date()
     })
 })
 

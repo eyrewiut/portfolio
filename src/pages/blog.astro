@@ -3,7 +3,8 @@ import DefaultLayout from "~/layouts/DefaultLayout.astro";
 import { getCollection } from "astro:content";
 import Card from "~/components/Card.astro";
 
-const articles = await getCollection("articles");
+const articles = await getCollection("articles")
+    .catch(e => []);
 const cards = articles
     .filter(article => article.data.category == "blog")
     .map(({slug, data}) => ({
