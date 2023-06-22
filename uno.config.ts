@@ -50,6 +50,9 @@ export default defineConfig({
                 img: {
                     "border-radius": "3px",
                     "border": "2px solid #B6B6B6",
+                },
+                pre: {
+                    "border": `1px solid #69706E` //grayscale 5
                 }
             }
         }),

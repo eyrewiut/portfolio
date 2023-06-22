@@ -3,9 +3,9 @@ import DefaultLayout from "~/layouts/DefaultLayout.astro";
 import Card from "~/components/Card.astro"; import {getCollection} from "astro:content";
 import {Image} from "astro:assets";
 
-const articles = await getCollection("articles").catch(e => []);
+const articles = await getCollection("articles", (article => article.data.category == "portfolio"))
+    .catch(e => []);
 const cards = articles
-    .filter(article => article.data.category == "portfolio")
     .map(({slug, data}) => ({
         ...data,
         formattedDate: new Intl.DateTimeFormat().format(new Date(data.date)),

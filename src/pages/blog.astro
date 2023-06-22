@@ -3,13 +3,12 @@ import DefaultLayout from "~/layouts/DefaultLayout.astro";
 import { getCollection } from "astro:content";
 import Card from "~/components/Card.astro";
 
-const articles = await getCollection("articles")
+const articles = await getCollection("articles", (article => article.data.category == "post"))
     .catch(e => []);
 const cards = articles
-    .filter(article => article.data.category == "blog")
     .map(({slug, data}) => ({
         ...data,
-        formattedDate: new Intl.DateTimeFormat().format(new Date(data.date)),
+        formattedDate: data.date.toLocaleDateString("en-GB", { timeZone: "UTC" }),
         slug,
         full_slug: "/articles/" + slug
     }))
