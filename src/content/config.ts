@@ -2,7 +2,7 @@ import { z, defineCollection } from "astro:content";
 
 const articlesCollection = defineCollection({
     schema: ({image}) => z.object({
-        thumbnail: image(),
+        thumbnail: image().optional(),
         title: z.string(),
         author: z.string(),
         abstract: z.string(),
