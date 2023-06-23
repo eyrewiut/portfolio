@@ -1,20 +1,21 @@
 import { defineConfig } from 'astro/config';
 import uno from "@unocss/astro";
-import NetlifyCMS from "astro-netlify-cms";
-import cmsConfig from "./netlifycms.config";
 import alpine from "@astrojs/alpinejs";
 import sitemap from "@astrojs/sitemap";
+import { netlifyFunctions } from "@astrojs/netlify";
+import react from "@astrojs/react";
+
 // TODO: image
 
+import markdoc from "@astrojs/markdoc";
+
+// https://astro.build/config
 export default defineConfig({
+  output: "hybrid",
+  adapter: netlifyFunctions(),
   site: process.env.URL || "http://localhost:3000/",
-  integrations: [
-    uno(),
-    NetlifyCMS({
-      config: cmsConfig,
-      adminPath: "/cms"
-    }),
-    alpine(),
-    sitemap(),
-  ]
+  experimental: {
+    assets: true
+  },
+  integrations: [uno(), alpine(), sitemap(), react(), markdoc()]
 });
