@@ -11,7 +11,7 @@ export default config ({
     collections: {
         articles: collection({
             label: "Articles",
-            path: "src/content/articles/*/",
+            path: "src/content/articles/*",
             format: {
                 data: "yaml",
                 contentField: "content"
@@ -20,11 +20,18 @@ export default config ({
             schema: {
                 thumbnail: fields.image({
                     label: "Thumbnail",
-                    publicPath: "/src/content/articles/"
+                    directory: "public/media/articles",
+                    publicPath: "/media/articles/"
                 }),
                 title: fields.slug({
                     name: {
                         label: "Title",
+                        validation: {
+                            length: {
+                                min: 2,
+                                max: 50
+                            }
+                        }
                     },
                 }),
                 author: fields.text({
@@ -32,7 +39,13 @@ export default config ({
                 }),
                 abstract: fields.text({
                     label: "Abstract",
-                    multiline: true
+                    multiline: true,
+                    validation: {
+                        length: {
+                            min: 10,
+                            max: 140
+                        }
+                    }
                 }),
                 category: fields.select({
                     label: "Type",
@@ -54,8 +67,8 @@ export default config ({
                     tables: true,
                     formatting: true,
                     images: {
-                        directory: "src/content/articles",
-                        publicPath: "/src/content/articles/"
+                        directory: "public/media/articles",
+                        publicPath: "/media/articles/"
                     }
                 })
             }
