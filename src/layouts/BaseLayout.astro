@@ -24,11 +24,23 @@ const socialCardURL = new URL("/social-card.png", Astro.url)
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-		<link rel="manifest" href="/site.webmanifest">
+
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+		<link rel="icon" type="image/png" href="/fish-dark.png">
+
+		<link rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: light)" href="/favicon-lightx32.png">
+		<link rel="icon" type="image/png" sizes="16x16" media="(prefers-color-scheme: light)" href="/favicon-lightx16.png">
+
+		<link rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: dark)" href="/favicon-darkx32.png">
+		<link rel="icon" type="image/png" sizes="16x16" media="(prefers-color-scheme: dark)" href="/favicon-darkx16.png">
+
+
 		<link rel="canonical" href={canonicalURL} />
+
+		<link rel="preload" href="/background-tile-light.png" media="(prefers-color-scheme: light)" as="image">
+		<link rel="preload" href="/background-tile-dark.png" media="(prefers-color-scheme: dark)" as="image">
+		<link rel="preload" href="/fish-light.svg" media="(prefers-color-scheme: dark)" as="image">
+		<link rel="preload" href="/fish-dark.svg" media="(prefers-color-scheme: light)" as="image">
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website">
