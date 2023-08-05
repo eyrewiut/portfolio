@@ -28,7 +28,7 @@
     "@fontsource/lato": "^4.5.9",
     "@fontsource/zen-kaku-gothic-new": "^4.5.13",
     "@keystatic/astro": "^0.0.8",
-    "@keystatic/core": "^0.0.110",
+    "@keystatic/core": "^0.0.114",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "alpinejs": "^3.10.3",

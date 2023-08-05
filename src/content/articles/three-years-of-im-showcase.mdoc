@@ -42,11 +42,11 @@ As mentioned earlier, due to the heightened importance of the website this year,
 
 The submission form and comments functionality both utilised netlify serverless functions, which added the submission data and comments to Storyblok via their Management API. This is objectively a dreadful way to make a comment system and even at the time I knew I should have been using a seperate database, it was free. I won't defend my actions. 😳
 
-![A screenshot of the submissions form showing a the first section of form fields. These include tex boxes for the project's title and description](/media/articles/three-years-of-im-showcase/2021-submission-form-screenshot.png)
+![A screenshot of the submissions form showing a the first section of form fields. These include tex boxes for the project's title and description](../../assets/media/three-years-of-im-showcase/2021-submission-form-screenshot.png)
 
 The theme for 2021's IM Showcase was "Cyberpunk" which made designing the website a very fun challenge. Before the showcase we even had a live Nixie-style coundown in the spot now occupied by the year's cyborg goose mascot: Cyberboi! We also used a hefty amount of box-shadow to give a cool neon effect to the navbar and buttons etc.
 
-![Screenshot of the homepage for 2021 showcase website, a cyborg goose, some introductory text and a book tickets button can be seen.](/media/articles/three-years-of-im-showcase/2021-home-screenshot.png)
+![Screenshot of the homepage for 2021 showcase website, a cyborg goose, some introductory text and a book tickets button can be seen.](../../assets/media/three-years-of-im-showcase/2021-home-screenshot.png)
 
 ### Showcase 2022
 
@@ -56,11 +56,11 @@ Although this made some amount of sense, in doing so I repeated my mistake from 
 
 Luckily, the 2022 showcase was in-person! This meant that we did not need to take submission of project files like in 2021 or add comments to projects (although that would have been a nice feature). To make things easier, submissions this year were done via a google form as I didn't have the time to develop a custom one like the year before. The theme for 2022 was "space", and although I was not quite sure at first how I should translate that into a website design, with some suggestions from the directors and the rest of the committee we ended up using a frosted glass look for components such as the navbar. I am overall quite happy with how it turned out.
 
-![A screenshot of the 2022 homepage showing some introductory text, buttons to view the previous versions of the site, and an illustration of a duck wearing a spacesuit saying "Astroboi Thanks You!"](/media/articles/three-years-of-im-showcase/2022-homepage-screenshot.png)
+![A screenshot of the 2022 homepage showing some introductory text, buttons to view the previous versions of the site, and an illustration of a duck wearing a spacesuit saying "Astroboi Thanks You!"](../../assets/media/three-years-of-im-showcase/2022-homepage-screenshot.png)
 
 The actual physical event was also a big success! We had more projects submitted than previous showcases and had a very healthy number of visitors show up as well.
 
-![A photo taken during the award ceremony in 2022 showing co-director Edmund Wei presenting the number of votes for the audience-favourite award](/media/articles/three-years-of-im-showcase/2022-audience-favourite-ceremony.png)
+![A photo taken during the award ceremony in 2022 showing co-director Edmund Wei presenting the number of votes for the audience-favourite award](../../assets/media/three-years-of-im-showcase/2022-audience-favourite-ceremony.png)
 
 ### Showcase 2023
 
@@ -68,12 +68,12 @@ My third and final year on the showcase! This years theme was hacking, and yet a
 
 We put quite a lot of effort into the website's design, and spent a long time finding the right the pixel-style font (we used [Pixeloid](https://ggbot.itch.io/pixeloid-font) in the end). The 2023 design team also came out with some cool graphics such as a spinning wireframe duck model which we put in pride of place at its traditional position at the top of the homepage. Edmund Wei, who was a director in 2022 but joined the tech team for 2023 even embedded an interactive 3d model made by design into the top of the projects and past-projects pages using three.js.
 
-![A screenshot of the interactive 3d scene at the top of the past-projects page](/media/articles/three-years-of-im-showcase/2023-projects-screenshot.png)
+![A screenshot of the interactive 3d scene at the top of the past-projects page](../../assets/media/three-years-of-im-showcase/2023-projects-screenshot.png)
 
 Although I wasn't a lead this time, my knowledge of how the showcase websites have been hosted and managed meant that I was also in charge of deploying the site to Netlify, and updating the domain, alongside my regular development tasks. This time however, when it came to tools and architecture we made a significant departure from the previous two years. In an attempt to simplify the codebase we stopped hosting our data in Storyblok, which we hadn't been taking full advantage of anyway, and hosted the data locally in json files. We also switched from using NuxtJS to [Astro](https://astro.build/). Astro is a relatively new site-generator, but doesn't tie you to a Javascript Library such as Vue or React, and claims to be far more performant to other more well-known tools.
 
 Along with the design of the website, the in-person event also looked the part. As usual it was hosted in the department's black box facility, which is fitted with lots of lighting and sound equipment and a staff member graciously configured some projections and lighting to fit the theme.
 
-![A birdseye view of the event while in full swing. People mill around computers at the edge of the room and on a central island. At the far end an animation of a duck hacking in front of some binary code is projected onto a canvas.](/media/articles/three-years-of-im-showcase/2023-birdseye-view.jpg)
+![A birdseye view of the event while in full swing. People mill around computers at the edge of the room and on a central island. At the far end an animation of a duck hacking in front of some binary code is projected onto a canvas.](../../assets/media/three-years-of-im-showcase/2023-birdseye-view.jpg)
 
 Thank you for reading this far, as you might be able to tell, the showcase has been a pretty important part of my time at university. If you are interested in Games, Websites, Essays about technology and Interactive Media, I would recommend visiting. You can check the showcase website or social media for details of dates and location. It means a lot for us students to be able to show off our work and make connections.
