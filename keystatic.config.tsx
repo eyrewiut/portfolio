@@ -21,7 +21,7 @@ export default config ({
                 thumbnail: fields.image({
                     label: "Thumbnail",
                     directory: "src/assets/media",
-                    publicPath: "../../assets/articles/"
+                    publicPath: "../../assets/media"
                 }),
                 title: fields.slug({
                     name: {
