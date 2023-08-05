@@ -1,5 +1,6 @@
 ---
-const { title, text, leftView = false, link } = Astro.props;
+import { HTMLAttributes } from 'astro/types';
+const { title, text, leftView = false, link, class: classString, "class:list": classList } = Astro.props;
 
 interface CardLinkOptions {
     isButton?: boolean;
@@ -7,14 +8,14 @@ interface CardLinkOptions {
     text: string;
 }
 
-export interface Props {
+export interface Props extends HTMLAttributes<"article"> {
 	title: string;
     leftView?: boolean;
     link?: CardLinkOptions;
     text?: string;
 }
 ---
-<article class="card">
+<article class="card" class:list={[classString, classList]}>
     {title && <h3 class:list={["h4 mt-0 mb--1", !leftView && "text-center"]}>{title}</h3>}
     <slot>
         <p class="font-zen mb-auto">{text}</p>

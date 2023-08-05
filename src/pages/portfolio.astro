@@ -26,17 +26,17 @@ const cards = articles
     {
         cards.length == 0 ?
             (<span class="font-jost text-2xl text-center my-5 block">Nothing here yet!</span>)
-        : <ol class="grid gap--1 md:grid-cols-2 lg:grid-cols-3">
-            {cards.map(({title, thumbnail, abstract, slug, full_slug}) =>
+        : <ol class="grid gap--1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-1fr">
+            {cards.map(({title, thumbnail, abstract, full_slug}) =>
             <li>
                 <Card leftView>
                     {thumbnail &&
                         <Image
-                            class="aspect-16/9 object-cover mb--1 rounded-3px"
+                            class="aspect-16/9 object-cover mb--1 rounded-3px w-full"
                             src={thumbnail}
                             alt={title}
-                            width={300}
-                            height={168}
+                            width={400}
+                            height={224}
                             loading="lazy"
                         />
                     }
