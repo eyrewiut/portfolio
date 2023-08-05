@@ -20,8 +20,8 @@ export default config ({
             schema: {
                 thumbnail: fields.image({
                     label: "Thumbnail",
-                    directory: "public/media/articles",
-                    publicPath: "/media/articles/"
+                    directory: "src/assets/media",
+                    publicPath: "../../assets/articles/"
                 }),
                 title: fields.slug({
                     name: {
@@ -67,8 +67,8 @@ export default config ({
                     tables: true,
                     formatting: true,
                     images: {
-                        directory: "public/media/articles",
-                        publicPath: "/media/articles/"
+                        directory: "src/assets/media",
+                        publicPath: "../../assets/media/"
                     }
                 })
             }
