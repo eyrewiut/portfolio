@@ -1,0 +1,47 @@
+---
+thumbnail: ../../assets/media/wriggle-valley-magazine-website/thumbnail.png
+title: Wriggle Valley Magazine Website
+author: George Newton
+abstract: >-
+  A website made for the Wriggle Valley Magazine, a community-run newsletter
+  operating in the parishes around the Wriggle Valley, Dorset.
+category: portfolio
+date: '2023-08-06'
+---
+The Wriggle Valley Magazine is a small community-run magazine serving villages in the Wriggle Valley, Dorset, England. When the covid-19 restrictions were imposed I quickly found myself with surplus time on my hands and so volunteered to develop a new website for the magazine free of charge. The magazine had recently created a new set of brand guidelines, and the current website was starting to look somewhat out of date.
+
+The editor of the website, who was my contact during the process, was interested in the possibility of publishing more on the website, as the old website's was mainly used for announcing when new issues of the magazine were published. Another idea we came up with was to post a timetable of local events on the website, as this is a feature of the magazine, but for younger members of the community would be more accessible if it was available digitally. Finally, the magazine plays an important role in advertising the services of local businesses to members of the community, as well as providing a valuable source of revenue as the magazine is completely free of charge.
+
+![](../../assets/media/wriggle-valley-magazine-website/Home.png)
+
+## Design
+
+### Events
+
+The events page was a particularly tricky aspect of the design because in the magazine it is published as a table. This works fine on paper, where none of the information can change and the size of the paper is known, however I wanted to avoid using tables to present the information on the website because online the size of the paper is no-longer static. Additionally, I felt that by breaking out of the fairly rigid structure of a table it would be possible to make the information more interactive. The magazine lists three types of events, which I displayed seperately using a dropdown to allow the user to select which type of event they wish to view.
+
+![](../../assets/media/wriggle-valley-magazine-website/Monthly%20Events.png)
+
+To complicate matters, each event was quite dynamic, with each event having a different set of properties, and often conditional dates such as 2nd Sunday of each month. To work around these issues, I opted for a timeline-based design, with events being grouped by day or month, and displayed as cards. Each card had a title, and up to four 1-2 line details about location, time, contacts etc.
+
+![](../../assets/media/wriggle-valley-magazine-website/Event.png)
+
+### Advertising
+
+The advertising page was also an important feature, however it took a while before I settled on an approach for porting it from the magazine onto the website. In the magazine, every few pages there is a couple of pages dedicated to advertisements, which come in the form of small square or rectangular graphics provided by the advertisers. These adverts also appear in small quantity among articles if there is space.
+
+This might sound similar to the adverts we are used to seeing online, and my initial thought was to try and place the ads around the website in a similar fashion. However, doing this made the site messy and often caused problems with layout, so after liaising with the editor, we decided to place all the adverts in a "directory" page, where people could search through them. I also planned to replace the advert graphics with cards similar to those on the events page to achieve a more consistent appearance.
+
+### News
+
+Since the magazine is almost entirely volunteer-run, the editor did not have time to post the entirety of the magazine contents on the website as news articles, however it was decided the feature should be included anyway so that at least a selection of semi-recent articles would be available there should people prefer to read them digitally.
+
+![](../../assets/media/wriggle-valley-magazine-website/Blog.png)
+
+## Tech Architecture
+
+At the time, I had recently learned [Vue.js](https://vuejs.org/) and had been experimenting with an API based CMS service named [Storyblok](https://www.storyblok.com/). Storyblok is an excellent service as it provides a visual editor interface similar to that of Wordpress, but provides your information entirely through a REST (or GraphQL) API. This means that it is platform and tool agnostic and can be integrated with anything capable of sending http requests, however it pairs particularly well with interactive Javascript Frameworks such as Vue as they enable the visual editor functionality.
+
+I developed the website using a lesser-known static site generator called [Gridsome](https://gridsome.org/), which positions itsself as something like [Gatsby](https://www.gatsbyjs.com/) but for Vue.js. My reason for choosing Gridsome at the time was that it had an interesting feature allowing Vue templates to fetch data from GraphQL data layer, which made developing with Storyblok (which generally involves fetching a LOT of JSON) a very pleasant experience.
+
+Unfortunately, I started university before I was able to finish the website, and soon found myself overwhelmed with assessments leaving no time to work on the website. I deeply regret not being able to hand this project off as I put in a lot of effort and feel it is for a worthwhile cause, but it unfortunately abandoning the project became unavoidable.
