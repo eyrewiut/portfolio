@@ -34,14 +34,36 @@ Finally, I decided that it would be useful to have a list of the projects so tha
 
 The next thing I did was look through the material design guidelines. One of the marking criteria for the assessment was production quality, meaning that I had to create something consistent and good looking. By using material design I eliminated a lot of work designing and developing new User Interface styles which allowed me to focus on User Experience (UX) instead. Since UX wasn't the main focus of this assessment I didn't have time to work on it as much as I otherwise would, but perfectionism ensured I didn't neglect it completely.
 
+### Navigation
+
+When first opening the app, the user is greeted by a login/register page (not visible above shown). I had forgotten to add an onboarding flow, but the time of realising this, it was too late to add one before the deadline. After logging in they are greeted by a welcome screen and can navigate to the QR code scanner or project list. Users can access the project information page either by tapping on the project entry in the projects list or by scanning it's QR code on the scanner page. Voting for a project can be done by toggling a button on the project information page.
+
+![](../../assets/media/im-showcase-android-app/routing-diagram.png)
+
 ## Implementation
+
+### Fetching content from Storyblok
 
 As I mentioned earlier, one of the requirements of the assessment was that I had to fetch from an API, furthermore, we were to avoid libraries which did too much work for us.
 
 Storyblok content is in the form of JSON and (unless you use the GraphQL API) *can* become very deeply nested. Since the data for the showcase was originally created for the purpose of creating the ENTIRE PAGE, this was definitely the case here, and the JSON body in each API response was quite complex. To get around this, I used a library named [Retrofit](https://square.github.io/retrofit/) for sending requests, which allows you to create models of you response body which act like types and therefore make accessing properties much simpler and also type-safe.
 
+### Storing nominations and authenticating
+
 In order to ensure each person only voted once, I had chosen to require that users login before they can cast their vote. I also needed some way to store the votes. Storyblok was handling the storage of the project data and assets, but doesn't provide an authentication solution, and while they do have a key-value store, it is only available on paid plans, where I was on the free trial.
 
-There was however an ideal solution to this: [Supabase](https://supabase.com/). Supabase is an open-source alternative to Google's Firebase, and provides user authentication/authorization, a PostgreSQL database, REST API, and more. Supabase has a free plan, which goes to sleep if you don't use any of it's features within a certain amount of time but was perfectly fine for my use-case. I stored votes in a votes table in the PostgreSQL database, with each row referencing a user in Supabase's auth schema, this amount of data is a bit simple for a relational database but worked well and would be expandable in the future.
+There was however an ideal solution to this: [Supabase](https://supabase.com/). Supabase is an open-source alternative to Google's Firebase, and provides user authentication/authorization, a PostgreSQL database, REST API, and more. Supabase has a free plan, which goes to sleep if you don't use any of it's features within a certain amount of time but was perfectly fine for my use-case. I stored votes in a votes table in the PostgreSQL database, with each row referencing a user in Supabase's `auth` schema, this amount of data is a bit simple for a relational database but worked well and would be expandable in the future.
 
 ![](../../assets/media/im-showcase-android-app/Database-Model.png)
+
+### Scanning QR Codes
+
+In order to develop the QR code scanning feature, I made use of [Google's ML Kit](https://developers.google.com/ml-kit/), which provided a very convenient guide. The barcodes contained the UUID of the project in Storyblok, meaning I could then simply fetch it from Storyblok's content delivery API. Usually, this was done by navigating to the project page and passing the UUID in a bundle, a ViewModel attached to to the project page would then perform the actual API calls.
+
+### Navigation
+
+To develop the interface I used a single-activity with fragments and AndroidX navigation, it took a while to get the hang of fragments having only learned android and Kotlin very recently but after rewriting the interface several times I managed to get it working. There is actually a navigation flow nested inside another one here because not all pages were to have the navigation or app bars (e.g. the login and welcome screens).
+
+Thank you for reading, I hope you have found this breakdown somewhat interesting (and hopefully not too cringe-worthy if you are a professional android developer 😅). This was my first time developing Android Apps and I found it simultaneously fun and frustrating.
+
+If you are interested, you can view the full sourcecode on GitHub: [https://github.com/eyrewiut/im-showcase-android](https://github.com/eyrewiut/im-showcase-android).
