@@ -1,0 +1,47 @@
+---
+thumbnail: ../../assets/media/im-showcase-android-app/thumbnail.png
+title: IM Showcase Android App
+author: George Newton
+abstract: >-
+  An assessment for my undergraduate mobile interaction module, I made an app
+  for a (real) student-run event called the IM Showcase.
+category: portfolio
+date: '2023-08-09'
+---
+For those who haven't read my [blog post about my time on the Interactive Media Showcase committee](/articles/three-years-of-im-showcase/), the Interactive Media (IM) Showcase is a student-run event organized by students on my undergraduate degree course at the University of York. It allows students to showcase their work to each other, to the general public, and to industry professionals. You can [view the event website here](https://imshowcase.co.uk/), which is redesigned and (usually) redeveloped every year.
+
+I was part of the tech team on the event committee for every year I was at the university, so I had a big hand in developing the architecture for the website. At my suggestion, years 2021 and 2022 tested out a headless CMS service named [Storyblok](https://storyblok.com), which serves all of your content in JSON format via either a REST or GraphQL API. This means that you can use it to create content for distribution on just about any platform, including Android apps.
+
+![Screenshot of the IM Showcase 2022 homepage. A heading reads "IM Showcase 2022", with a paragraph below describing the event. To the right is an illustration of a duck wearing a spacesuit and a caption reading "Astroboi thanks you!". Partially visible below is another section about the opening gala, project exhibition, and how to attend.](../../assets/media/im-showcase-android-app/showcase-2022-screenshot.png)
+
+## Motivation
+
+One of the modules on my degree program, the Mobile Interaction module, teaches students how to use Android Studio and Kotlin to make Android apps. The assessment for this module is to design and develop an app of your choosing, with a few requirements such as that it must have a certain number of pages, fetch some content from an API, etc. To me, this seemed like a perfect opportunity to take advantage of my access to the website's code, Storyblok API, and mountains of project data that had been submitted in previous years.
+
+Every year at the IM Showcase, the projects are judged by industry professionals, and awards given out to their authors. In addition to these awards, there is an "Audience Favourite" award which is the result of a vote cast among visitors to the event. Usually this is done via a Google Form, which, not being  specifically designed for voting can be very cumbersome and unintuitive.
+
+## Design
+
+I decided for the assessment I would develop an app for the showcase which would allow visitors to vote from their phones. While there was a need for something like this, a Progressive Web App or other web-based implementation would have been the best way to achieve it, but I was developing it in app form for this assessment and didn't intend to use this version for the event.
+
+Before I could design the app I needed to decide what features and pages it would have. In previous years of the event, there had been QR codes linking to the voting form placed strategically around the event venue, however these didn't relate to any specific project and were more for convenience than anything. I realised that if we printed a separate QR code for each project, they could link to a specific page within the app dedicated to that project.
+
+![](../../assets/media/im-showcase-android-app/qr-scanner-screen.png)
+
+Thinking ahead to the technical implementation, I also realised that I would need some way of ensuring each visitor only voted once. For reasons I will explain later I chose [Supabase](https://supabase.com) for this, which makes implementation of user authentication very easy, however meant that I would also have to design a login flow. I had originally wanted to make use of some sort of unique device identifier which would have eliminated the requirement for users to log in, but as a novice in Android development I chose the safe route this time by sticking to what I know.
+
+Finally, I decided that it would be useful to have a list of the projects so that users can navigate to the projects without a QR code. This way, if a QR code wasn't working, or if they wanted to view the projects outside of the event venue they could.
+
+The next thing I did was look through the material design guidelines. One of the marking criteria for the assessment was production quality, meaning that I had to create something consistent and good looking. By using material design I eliminated a lot of work designing and developing new User Interface styles which allowed me to focus on User Experience (UX) instead. Since UX wasn't the main focus of this assessment I didn't have time to work on it as much as I otherwise would, but perfectionism ensured I didn't neglect it completely.
+
+## Implementation
+
+As I mentioned earlier, one of the requirements of the assessment was that I had to fetch from an API, furthermore, we were to avoid libraries which did too much work for us.
+
+Storyblok content is in the form of JSON and (unless you use the GraphQL API) *can* become very deeply nested. Since the data for the showcase was originally created for the purpose of creating the ENTIRE PAGE, this was definitely the case here, and the JSON body in each API response was quite complex. To get around this, I used a library named [Retrofit](https://square.github.io/retrofit/) for sending requests, which allows you to create models of you response body which act like types and therefore make accessing properties much simpler and also type-safe.
+
+In order to ensure each person only voted once, I had chosen to require that users login before they can cast their vote. I also needed some way to store the votes. Storyblok was handling the storage of the project data and assets, but doesn't provide an authentication solution, and while they do have a key-value store, it is only available on paid plans, where I was on the free trial.
+
+There was however an ideal solution to this: [Supabase](https://supabase.com/). Supabase is an open-source alternative to Google's Firebase, and provides user authentication/authorization, a PostgreSQL database, REST API, and more. Supabase has a free plan, which goes to sleep if you don't use any of it's features within a certain amount of time but was perfectly fine for my use-case. I stored votes in a votes table in the PostgreSQL database, with each row referencing a user in Supabase's auth schema, this amount of data is a bit simple for a relational database but worked well and would be expandable in the future.
+
+![](../../assets/media/im-showcase-android-app/Database-Model.png)
