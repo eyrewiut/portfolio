@@ -10,3 +10,9 @@ date: '2023-09-18'
 ## Setting up Astro
 
 The first thing we need to do is set up Astro. Create a blank project using the `pnpm create astro` command.
+
+For this project, I will be using UnoCSS for styling. For those who don't know, UnoCSS is an "On-Demand atomic CSS engine", which essentially means it is like TailwindCSS's JIT functionality but as a standalone package. It has a preset which emulates TailwindCSS almost exactly, which is what we'll be using.
+
+To add the UnoCSS integration to Astro, run `pnpm astro add @unocss/astro`, then create a file named `uno.config.ts` in the root of your project folder.
+
+You can find the configuration options for unocss on [the project website](https://unocss.dev), but since it depends on your preference I won't go into detail on it.
