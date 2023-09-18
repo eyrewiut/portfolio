@@ -16,3 +16,11 @@ For this project, I will be using UnoCSS for styling. For those who don't know, 
 To add the UnoCSS integration to Astro, run `pnpm astro add @unocss/astro`, then create a file named `uno.config.ts` in the root of your project folder.
 
 You can find the configuration options for unocss on [the project website](https://unocss.dev), but since it depends on your preference I won't go into detail on it.
+
+### Installing Vue and Nanostores
+
+In order to make our notepad web-app fully interactive, we are going to need some sort of JavaScript framework. In this case we will use Vue 3.
+
+You can install it with `pnpm astro add vue.`
+
+We will also need to share state across pages and components, and the best way to do this in astro is using [nanostores](https://docs.astro.build/en/core-concepts/sharing-state/) so install the nanostores library and its vue integration with `pnpm add nanostores @nanostores/vue`
